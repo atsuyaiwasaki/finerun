@@ -6,7 +6,18 @@
     <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
     <link rel="stylesheet" href="components/loader.css">
     <script src="components/loader.js"></script>
+    <script type="text/javascript" charset="utf-8" src="phonegap-demo/main.js"></script>
+    <script type="text/javascript" src="components/loader.js"></script>
+    <link rel="stylesheet" type="text/css" href="components/loader.css">
+     <script type="text/javascript">
+        document.addEventListener("deviceready", onDeviceReady, false);
+        function onDeviceReady(){
+            console.log("PhoneGap is ready.");
+        }
+    </script>
+
     <style>
+    
       html, body, #map {
         height: 100%;
         margin: 0px;
@@ -238,8 +249,15 @@ $(window).load(initialize);
     <div id="map"></div>
     <div id="bar">
       <p class="auto"><input type="text" id="autoc"/></p>
-      <p><a id="clear" href="#">ここをクリック</a>してマップをクリアします。</p>
     </div>
-    document.write("sdftgh");
+      <p id="test">中身ＪＳの変数いれたい</p>
+  <input type="button" value="aaa" onclick="test()">
+        <script>
+            function test(){
+                var elem = document.getElementById("test");
+                elem.innerHTML = placeIdArray[0];   
+            }
+        </script>
+    <div><a  href="report.html">記録の終了</a></div>
 </body>
 </html>
