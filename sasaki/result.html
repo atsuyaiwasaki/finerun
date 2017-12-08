@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+   <title>リザルト</title>
+   <link rel="stylesheet" href="main.css" type="text/css">
+ </head>
+ <body>
+   <div id="result" class="result_img">
+   </div>
+   <input type="button" onclick="changeImg()" value="経路表示">
+ </body>
+ <script type="text/javascript">
+  var clickNumber = 0;
+  function changeImg(){
+    clickNumber++;
+    if((clickNumber%2)==0){
+      document.getElementById("result").className="result_img";
+    }else{
+      document.getElementById("result").className="result_img2";
+    }
+  }
+</script>
+</html>
