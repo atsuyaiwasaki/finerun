@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset=utf-8>
+<script>
+//ユーザーの現在の位置情報を取得
+
+location = Array();
+/***** ユーザーの現在の位置情報を取得 *****/
+function successCallback(position) {
+  location.puch=new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+  document.getElementById("show_result").innerHTML += location
+}
+
+/***** 位置情報が取得できない場合 *****/
+function errorCallback(error) {
+  var err_msg = "";
+  switch(error.code)
+  {
+    case 1:
+      err_msg = "位置情報の利用が許可されていません";
+      break;
+    case 2:
+      err_msg = "デバイスの位置が判定できません";
+      break;
+    case 3:
+      err_msg = "タイムアウトしました";
+      break;
+  }
+    document.getElementById("show_result").innerHTML = err_msg;
+}
+function startfnc()
+{
+  //関数hyoji()を1000ミリ秒間隔で呼び出す
+  setInterval(navigator.geolocation.getCurrentPosition(successCallback, errorCallback),1000);
+}
+</script>
+<title>Geolocation API　サンプル</title>
+</head>
+<body>
+<p>あなたの現在位置</p>
+<input type="button" value="スタート" onclick="startfnc()"><br>
+<div id="show_result"></div>
+</body>
+</html>
