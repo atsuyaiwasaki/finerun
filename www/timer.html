@@ -29,6 +29,7 @@ function successCallback(position) {
 
   var latLng = [position.coords.latitude,position.coords.longitude];
   point.push(latLng);
+  localStorage.setItem('latLng', JSON.stringify(point));
 }
 
 /***** 位置情報が取得できない場合 *****/

@@ -16,7 +16,10 @@
   <body>
     <div id="map"></div>
     <script type="text/javascript">
-    google.maps.event.addDomListener(window, "load", function() {
+      google.maps.event.addDomListener(window, "load", function() {
+
+      var latLng = JSON.parse(localStorage.getItem('latLng'));
+      console.log(latLng)
 
       var patharray = new Array();
       patharray[0] = new google.maps.LatLng(35.625, 139.342);
