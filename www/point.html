@@ -32,15 +32,17 @@
         distance += google.maps.geometry.spherical.computeDistanceBetween(patharray[i], patharray[i+1]);
       }
 
+      var count = patharray.length;
+      console.log(count)
     	var map = new google.maps.Map(document.getElementById('map'), {
-    		center: patharray[latLng.length+1],
+    		center: patharray[patharray.length-1],
     		zoom: 15,
     		mapTypeId: google.maps.MapTypeId.ROADMAP
     	});
 
     	// 吹き出しに表示
     	new google.maps.InfoWindow({
-    		content: distance + ' m',
+    		content: distance.toFixed(2) + ' m',
     		position: patharray[3]
     	}).open(map);
 
