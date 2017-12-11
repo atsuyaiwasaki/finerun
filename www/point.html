@@ -21,9 +21,8 @@
       var latLng = JSON.parse(localStorage.getItem('latLng'));
       console.log(latLng)
 
-      var count;
       var patharray = new Array();
-      for (count=0;count<latLng.length;count++){
+      for (var i=0;i<latLng.length;i++){
         patharray[i] = new google.maps.LatLng(latLng[i][0],latLng[i][1]);
       }
 
@@ -34,7 +33,7 @@
       }
 
     	var map = new google.maps.Map(document.getElementById('map'), {
-    		center: patharray[count],
+    		center: patharray[latLng.length+1],
     		zoom: 15,
     		mapTypeId: google.maps.MapTypeId.ROADMAP
     	});
