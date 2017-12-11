@@ -3,32 +3,32 @@
 <head>
 <meta charset=utf-8>
 <script>
-var counts = 0;
-var countup = function(){
-  navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
-}
-setInterval(countup, 1000);
 //ユーザーの現在の位置情報を取得
 var count = 0;
+var point = [];
+var timerID;
 function startfnc(){
-  setInterval(getlocation(),1000);
+  timerID = setInterval(getPosition, 1000);
 }
-function getlocation(){
+
+function endfnc(){
+  clearInterval(timerID);
+}
+
+var getPosition = function(){
+  count++;
+  console.log(count);
+  console.log(point);
   navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
 }
 /***** ユーザーの現在の位置情報を取得 *****/
 function successCallback(position) {
   var gl_text = "緯度：" + position.coords.latitude + "<br>";
-    gl_text += "経度：" + position.coords.longitude + "<br>";
-    gl_text += "高度：" + position.coords.altitude + "<br>";
-    gl_text += "緯度・経度の誤差：" + position.coords.accuracy + "<br>";
-    gl_text += "高度の誤差：" + position.coords.altitudeAccuracy + "<br>";
-    gl_text += "方角：" + position.coords.heading + "<br>";
-    gl_text += "速度：" + position.coords.speed + "<br>";
-    count++;
-    console.log(count);
-    document.getElementById("show_result").innerHTML += gl_text;
+  gl_text += "経度：" + position.coords.longitude + "<br>";
+  document.getElementById("show_result").innerHTML += gl_text;
 
+  var latLng = [position.coords.latitude,position.coords.longitude];
+  point.push(latLng);
 }
 
 /***** 位置情報が取得できない場合 *****/
@@ -50,11 +50,13 @@ function errorCallback(error) {
   //デバッグ用→　document.getElementById("show_result").innerHTML = error.message;
 }
 </script>
-<title>Geolocation API　サンプル</title>
+<title>timer</title>
 </head>
 <body>
 <p>あなたの現在位置</p>
-<input type="button" value="スタート" onclick="startfnc()"><br>
+<input type="button" value="スタート" onclick="startfnc()">
+<input type="button" value="エンド" onclick="endfnc()"><br>
+<a href="./point.html">point</a>
 <div id="show_result"></div>
 </body>
 </html>
