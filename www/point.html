@@ -21,18 +21,20 @@
       var latLng = JSON.parse(localStorage.getItem('latLng'));
       console.log(latLng)
 
+      var count;
       var patharray = new Array();
-      for (var i=0;i<latLng.length;i++){
+      for (count=0;count<latLng.length;count++){
         patharray[i] = new google.maps.LatLng(latLng[i][0],latLng[i][1]);
       }
 
     	// 距離
-    	var distance = google.maps.geometry.spherical.computeDistanceBetween(patharray[0], patharray[1]);
-      distance += google.maps.geometry.spherical.computeDistanceBetween(patharray[1], patharray[2]);
-      distance += google.maps.geometry.spherical.computeDistanceBetween(patharray[2], patharray[3]);
+    	var distance = 0;
+      for (var i=0;i<latLng.length-1;i++){
+        distance += google.maps.geometry.spherical.computeDistanceBetween(patharray[i], patharray[i+1]);
+      }
 
     	var map = new google.maps.Map(document.getElementById('map'), {
-    		center: patharray[3],
+    		center: patharray[count],
     		zoom: 15,
     		mapTypeId: google.maps.MapTypeId.ROADMAP
     	});
